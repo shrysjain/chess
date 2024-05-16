@@ -41,14 +41,13 @@ public class Board extends JPanel {
 
       for (int r = 0; r < N; r++) {
          for (int c = 0; c < N; c++) {
+            matrix[r][c] = 0;
+
             board[r][c] = new JButton();
             board[r][c].setOpaque(true);
             board[r][c].setBorderPainted(true);
 
-            if (r % 2 == 0 && c % 2 == 1) {
-               board[r][c].setBackground(new Color(113, 147, 82));
-               board[r][c].setBorder(new LineBorder(new Color(113, 147, 82)));
-            } else if (r % 2 == 1 && c % 2 == 0) {
+            if (r % 2 == 0 && c % 2 == 1 || r % 2 == 1 && c % 2 == 0) {
                board[r][c].setBackground(new Color(113, 147, 82));
                board[r][c].setBorder(new LineBorder(new Color(113, 147, 82)));
             } else {
@@ -86,8 +85,16 @@ public class Board extends JPanel {
             if (r == 7 && c == 4)
                board[r][c].setIcon(kingW);
 
-            // board[r][c].addActionListener(new Handler1(r, c));
+            board[r][c].addActionListener(new Handler1(r, c));
             center.add(board[r][c]);
+         }
+      }
+
+      for (int r = 0; r < N; r++) {
+         for (int c = 0; c < N; c++) {
+            if (board[r][c].getIcon() == pawnW) {
+               matrix[r][c] = 1;
+            }
          }
       }
 
@@ -95,6 +102,27 @@ public class Board extends JPanel {
       reset.addActionListener(new Handler2());
       reset.setEnabled(false);
       add(reset, BorderLayout.SOUTH);
+   }
+
+
+
+   private class Handler1 implements ActionListener {
+      private int row = 0;
+      private int col = 0;
+
+      public Handler1(int r, int c) {
+         row = r;
+         col = c;
+      }
+
+      @Override
+      public void actionPerformed(ActionEvent e) {
+         Icon piece = board[row][col].getIcon();
+
+         board[row][col].setIcon(null);
+
+         board[row-2][col].setIcon(piece);
+      }
    }
 
    private class Handler2 implements ActionListener {
