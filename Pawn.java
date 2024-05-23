@@ -3,7 +3,6 @@ public class Pawn extends Piece {
         super(x, y, isWhite);
     }
 
-    @Override
     public boolean isValidMove(int newX, int newY, Piece[][] board) {
         int direction = isWhite ? -1 : 1;
 
@@ -27,5 +26,9 @@ public class Pawn extends Piece {
         }
 
         return false;
+    }
+
+    public String getName() {
+        return "pawn";
     }
 }

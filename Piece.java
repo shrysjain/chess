@@ -26,4 +26,6 @@ public abstract class Piece {
     }
 
     public abstract boolean isValidMove(int newX, int newY, Piece[][] board);
+
+    public abstract String getName();
 }

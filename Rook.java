@@ -3,7 +3,6 @@ public class Rook extends Piece {
         super(x, y, isWhite);
     }
 
-    @Override
     public boolean isValidMove(int newX, int newY, Piece[][] board) {
         if (newX != x && newY != y) {
             return false;
@@ -26,5 +25,9 @@ public class Rook extends Piece {
         }
 
         return true;
+    }
+
+    public String getName() {
+        return "rook";
     }
 }

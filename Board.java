@@ -9,11 +9,11 @@ public class Board {
     }
 
     private void initializeBoard() {
-        // Place pieces on the board
         for (int i = 0; i < 8; i++) {
             board[i][1] = new Pawn(i, 1, false);
             board[i][6] = new Pawn(i, 6, true);
         }
+
         board[0][0] = new Rook(0, 0, false);
         board[7][0] = new Rook(7, 0, false);
         board[0][7] = new Rook(0, 7, true);
